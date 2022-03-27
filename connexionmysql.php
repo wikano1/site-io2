@@ -1,6 +1,6 @@
 <?php
   function connexion() {
-    $conn = new mysqli("localhost", "test", "test", "test1");
+    $conn = mysqli_connect("localhost", "test", "test", "test1");
     if (!$conn) exit;
     return $conn;
   }
