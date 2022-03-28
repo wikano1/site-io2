@@ -2,12 +2,14 @@
 include_once("connexionmysql.php");
 
 $conn=connexion();
-$aaa = $_POST[nom];
-$bbb = $_POST[mdp];
+$aaa = htmlspecialchars($_POST['nom']);
+$bbb = htmlspecialchars($_POST['mdp']);
 
 $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$aaa'");
+$row = mysqli_fetch_array($res, MYSQLI_BOTH);
 if (mysqli_num_rows($res)==1) {
   echo "nom d'utilisateur déjà existant, veuillez en choisir un autre";
+  print_r($res);
 
 } else {
 $instruction = "INSERT INTO utilisateur(nom, motdepasse) VALUES ('$aaa', '$bbb')";
