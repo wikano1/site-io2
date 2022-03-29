@@ -4,17 +4,19 @@
  session_start();
  $a=$_POST['nom'];
  $b=$_POST['mdp'];
- echo $_SESSION['nom'];
- if(!empty($a) AND !empty($b)) {
-   $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$a' AND motdepasse = '$b'");
-   if (mysqli_num_rows($res)==1) {
-     $_SESSION['nom'] = $_POST['nom'];
-    } else {
-       echo "Mauvais mail ou mot de passe !";
-    }
- } else {
-    echo "Tous les champs doivent être complétés !";
- }
+ if(isset($a) && isset($b)) {
+   if(!empty($a) AND !empty($b)) {
+     $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$a' AND motdepasse = '$b'");
+     if (mysqli_num_rows($res)==1) {
+       $row = mysqli_fetch_array($res);
+       $_SESSION['nom'] = $_POST['nom'];
+      } else {
+         echo "Mauvais mail ou mot de passe !";
+      }
+   } else {
+      echo "Tous les champs doivent être complétés !";
+   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
