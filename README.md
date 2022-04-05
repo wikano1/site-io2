@@ -1,1 +1,1 @@
-c'est encore mal fait mais ça marche
+c'est encore mal fait mais tout ce que je mets marche normalement
