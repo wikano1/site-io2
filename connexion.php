@@ -10,6 +10,8 @@
      if (mysqli_num_rows($res)==1) {
        $row = mysqli_fetch_array($res);
        $_SESSION['nom'] = $_POST['nom'];
+       header('Location: accueil.php');
+       exit();
       } else {
          echo "Mauvais mail ou mot de passe !";
       }
@@ -30,5 +32,6 @@
     <p>Votre nom : <input type="text" name="nom"></p>
     <p>Votre mdp : <input type="text" name="mdp"></p>
     <p><input type="submit" value="OK"></p>
+    <p>retournez à l'accueil<a href="accueil.php"> ici</a></p>
   </body>
 </html>

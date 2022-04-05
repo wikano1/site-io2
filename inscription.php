@@ -6,7 +6,7 @@ $aaa = htmlspecialchars($_POST['nom']);
 $bbb = htmlspecialchars($_POST['mdp']);
 
 $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$aaa'");
-$row = mysqli_fetch_array($res, MYSQLI_BOTH);
+$row = mysqli_fetch_array($res);
 if (mysqli_num_rows($res)==1) {
   echo "nom d'utilisateur déjà existant, veuillez en choisir un autre";
   print_r($res);
@@ -25,6 +25,6 @@ $conn->close();
     <title></title>
   </head>
   <body>
-     <p>veuillez retourner à l'accueil en cliquant <br><a href=accueil.html>ici</a></p>
+     <p>veuillez retourner à l'accueil en cliquant <br><a href=accueil.php>ici</a></p>
   </body>
 </html>

@@ -25,10 +25,14 @@
     <?php
     $res2 = mysqli_query($conn,"SELECT * FROM notes WHERE personne = '$user' AND id= '$rowid'");
     $row2 = mysqli_fetch_array($res2);
-    if($row['0']==$row2['0']) {
+    if($row['0']==$row2['0'] && isset($_SESSION['nom'])) {
       $b = 'false';
     } else {
-      $b = 'true';
+      if (!isset($_SESSION['nom'])) {
+        $b = 'false';
+      } else {
+        $b= 'true';
+      }
     }
     echo "<br>";
     echo $b;
