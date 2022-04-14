@@ -24,13 +24,54 @@
     echo "<br><h2>Utilisateurs :</h2>";
     while ($row = mysqli_fetch_array($res2)) {
       $nomuser = $row['1'];
-      echo "<form action=\"suppression.php\" method=\"post\">";
-      echo "<input type=\"hidden\" name=\"bool\" value=\"1\">";
-      echo "Utilisateur: ".$nomuser." <input type=\"image\" src=\"woofwoof.png\" width=\"32\" height=\"27\"alt=\"Submit\">"."<input type=\"hidden\" name=\"multisuppr\" value=\"$nomuser\">";
-      echo "</form>";
+      $req=mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$nomuser'");
+      $res=mysqli_num_rows($req);
+      if($res==0) {
+        echo "<form action=\"suppression.php\" method=\"post\">";
+        echo "<input type=\"hidden\" name=\"bool\" value=\"1\">";
+        echo "Utilisateur: ".$nomuser." <input type=\"image\" src=\"woofwoof.png\" width=\"32\" height=\"27\"alt=\"Submit\">"."<input type=\"hidden\" name=\"multisuppr\" value=\"$nomuser\">";
+        echo "</form>";
+      }
     }
+    $res3 = mysqli_query($conn, "SELECT * FROM notes WHERE report = true");
+    ?><h2>Report :</h2><?php
+    while ($row = mysqli_fetch_array($res3)) {
+      $id = $row['0'];
+      $req = mysqli_query($conn, "SELECT nom FROM contenu WHERE id = '$id'");
+      $contenu = mysqli_fetch_array($req);
+      $nomuser = $row['1'];
+      $avis = $row['3'];
+      $note = $row['2'];
+      echo "Utilisateur: ".$row['1'].", ".$contenu['0'].", avis: « ".$row['0']." », note : ".$row['2'];
+    }
+    ?><h2>ajout de moteurs</h2>
+    <form action="ajout.php" method="post" enctype="multipart/form-data">
+      <label for="nom">nom : </label>
+      <input type="text" name="nom">
+      <br><br>
+      <label for="lien">lien : </label>
+      <input type="text" name="lien">
+      <br><br>
+      <label for="desc">description :</label>
+      <input type="text" name="desc">
+      <br><br>
+      <input type="file" name="photo">
+      <br><br>
+      <input type="submit" value="envoyer">
+    </form>
+    <?php
   } else {
     header("Location: erreur.html");
     exit();
   }
-?>
+  ?>
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+    </head>
+    <body>
+      <p>Retournez à l'accueil <a href="accueil.php">ici</a></p>
+    </body>
+  </html>

@@ -2,10 +2,6 @@
 	include("connexionmysql.php");
 	$conn = connexion();
 	session_start();
-	function lien() {
-		$_SESSION['bool'] = 1;
-		return "deconnexion.php";
-	}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -36,25 +32,24 @@
 		<br>
 		<h2>compte</h2>
 		<?php
-			if (isset($_SESSION['nom'])) {
-				echo "<form id=\"deconnexion\" action=\"deconnexion.php\" method=\"post\">
-					<input type=\"hidden\" name=\"val\" value=\"1\">
-					<a href=\"".lien()."\">deconnectez-vous</a><br>
-				</form>";
-			} else {
-				echo "<a href=\"connexion.php\">connectez-vous</a><br>";
-			}
+		//vérification de si l'utilisateur est un connecté ou non -> oui=deconnexion.php, non=connexion.php
+		if (isset($_SESSION['nom'])) {
+				$_SESSION['val']=1;
 		?>
+		<a href="deconnexion.php">deconnectez-vous</a><br>
+		<?php } else { ?>
+		<a href="connexion.php">connectez-vous</a><br>
+		<?php } ?>
 		<a href="inscription.html">inscrivez-vous</a>
 		<br>
 		<a href="profil.php">consultez votre profil ici</a>
 		<?php
+		//vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
 			$user = $_SESSION['nom'];
 			$a = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
 			$a = mysqli_fetch_array($a);
-			if (isset($a['0'])) {
-				echo "<p>vous etes administrateur, cliquez <a href=\"pageadmin.php\">ici</a> pour accéder à l'espace administrateur</p>";
-			}
-		?>
+			if (isset($a['0'])) { ?>
+		<p>vous etes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
+		<?php } ?>
 	</body>
 </html>

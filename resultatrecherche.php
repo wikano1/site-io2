@@ -1,10 +1,13 @@
 <?php
+  echo "<h1>Resultat de la recherche</h1>";
   include_once("connexionmysql.php");
   $conn=connexion();
-  $recherche = $_GET['recherche'];
+  $recherche = htmlspecialchars($_GET['recherche']);
+  $opérande = $_GET['opérande'];
+  $note = $_GET['note/5'];
   //cas 1 : note mais pas de nom
   if ($_GET['note/5']!='/'&&!isset($_GET['recherche'])) {
-    $str = "SELECT * FROM contenu WHERE note ".$_GET['opérande']." ".$_GET['note/5'];
+    $str = "SELECT * FROM contenu WHERE note ".$opérande." ".$note;
     $res = mysqli_query($conn, $str);
   }
   //cas 2 : nom mais pas de note
@@ -14,23 +17,14 @@
   }
   //cas 3 : nom et note
   if (isset($_GET['recherche']) && $_GET['note/5']!='/') {
-    $str = "note ".$_GET['opérande']." ".$_GET['note/5'];
+    $str = "note ".$opérande." ".$note;
     $rec='%'.$recherche.'%';
-    $res = mysqli_query($conn,"SELECT * FROM contenu WHERE nom LIKE '$rec' AND ".$str);
+    $res = mysqli_query($conn,"cc);
   }
+
   while ($row = mysqli_fetch_array($res)){
     $lien="<a href=moteur.php?".$row['1'];
-    $resultat .= $lien.">".$row['1']."</a><br>";
+    $resultat= $lien.">".$row['1']."</a><br>";
+    echo $resultat;
   }
 ?>
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Resultat de la recherche</h1>
-    <?php echo $resultat; ?>
-  </body>
-</html>

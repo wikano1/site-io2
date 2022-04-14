@@ -6,7 +6,7 @@
   if(isset($_POST['bool'])) {
     header("Location: pageadmin.php");
   } else {
-    header("location: profil.php");
+    //header("location: profil.php");
   }
   //effacer une note
   if(isset($_POST['supprimer'])) {
@@ -17,12 +17,18 @@
       $user = $_SESSION['nom'];
       $idnote = $_POST['supprimer2'];
     }
+  }
     $total = mysqli_query($conn, "SELECT totalnotes FROM contenu WHERE id = '$idnote'");
     $m = mysqli_fetch_array($total);
     $newtotal = $m['0']-1;
+    echo "newtotal :".$newtotal;
     $req = mysqli_query($conn, "UPDATE contenu SET totalnotes='$newtotal' WHERE id='$idnote'");
     $req2 = mysqli_query($conn, "DELETE FROM notes WHERE id = '$idnote' AND personne = '$user'");
-  }
+    $moy = mysqli_query($conn, "SELECT AVG(note) FROM notes WHERE id = '$idnote'");
+    $m1 = mysqli_fetch_array($moy);
+    $newmoy = $m1['0'];
+    $req = mysqli_query($conn, "UPDATE contenu SET note='$newmoy' WHERE id='$idnote'");
+    echo "newmoy: ".$newmoy;
   //effacer un compte
   if(isset($_POST['multisuppr'])) {
     $userasuppr = $_POST['multisuppr'];
