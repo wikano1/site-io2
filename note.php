@@ -10,12 +10,8 @@
     $row = mysqli_fetch_array($req);
     $user=$_SESSION['nom'];
     $rowid = $row['0'];
-    echo $rowid."<br>";
-    echo $user."<br>";
-    echo $postnote."<br>";
-    echo $postavis."<br>";
-    $postavis = str_replace("'", "\'", $postavis);
-    $instruction = "INSERT INTO notes(id, personne, note, avis,report) VALUES ('$rowid','$user','$postnote','$postavis','0')";
+    $avis = str_replace("'", "\'", $postavis);
+    $instruction = "INSERT INTO notes(id, personne, note, avis,report) VALUES ('$rowid','$user','$postnote','$avis','0')";
     $noteUser = mysqli_query($conn, $instruction);
     $getnotes = mysqli_query($conn, "SELECT AVG(note) FROM notes WHERE id = '$rowid'");
     $row2 = mysqli_fetch_array($getnotes);
