@@ -50,9 +50,11 @@
 		<a href="profil.php">consultez votre profil ici</a>
 		<?php
 		//vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
+		if (isset($_SESSION['nom'])) {
 			$user = $_SESSION['nom'];
 			$a = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
 			$a = mysqli_fetch_array($a);
+		}
 			if (isset($a['0'])) { ?>
 		<p>vous etes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
 		<?php } ?>

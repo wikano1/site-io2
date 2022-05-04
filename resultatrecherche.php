@@ -19,7 +19,7 @@
   if (isset($_GET['recherche']) && $_GET['note/5']!='/') {
     $str = "note ".$opérande." ".$note;
     $rec='%'.$recherche.'%';
-    $res = mysqli_query($conn,"cc);
+    $res = mysqli_query($conn,"SELECT * FROM contenu WHERE nom LIKE '$rec' AND ".$str);
   }
 
   while ($row = mysqli_fetch_array($res)){
