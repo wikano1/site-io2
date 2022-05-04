@@ -10,16 +10,11 @@
 		<title>accueil</title>
 	</head>
 	<body>
-		<div class="div1">
-			<p>test</p>
-		</div>
-		<div class="div2">
-			<div style="padding-bottom:2000px">
 		<h1>Page d'accueil</h1>
 		<h2>Recherche:</h2>
-			<form action="resultatrecherche.php" method="get">
-	    	<input type="search" name="recherche">
-				<select name="opérande">
+		<form action="resultatrecherche.php" method="get">
+    	<input type="search" name="recherche">
+			<select name="opérande">
 				<option value="=">=</option>
 				<option value=">=">></option>
 				<option value="<="><</option>
@@ -43,6 +38,8 @@
 		?>
 		<a href="deconnexion.php">deconnectez-vous</a><br>
 		<?php } else { ?>
+
+			
 		<a href="connexion.php">connectez-vous</a><br>
 		<?php } ?>
 		<a href="inscription.html">inscrivez-vous</a>
@@ -54,11 +51,9 @@
 			$user = $_SESSION['nom'];
 			$a = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
 			$a = mysqli_fetch_array($a);
-		}
+	}
 			if (isset($a['0'])) { ?>
 		<p>vous etes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
 		<?php } ?>
-	</div>
-		</div>
 	</body>
 </html>

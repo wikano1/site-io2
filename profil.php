@@ -1,18 +1,14 @@
 <?php
-  session_start();
-  include_once("connexionmysql.php");
-  $conn = connexion();
-  $user =$_SESSION['nom'];
+  
+  include("index.php");
+  if (isset($_SESSION['nom'])) {
+    $user = $_SESSION['nom'];
+  }
 ?>
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>profil</title>
-  </head>
-  <body>
-    <?php if($user!=null) {
-            echo "<h1>Profil de ".$user."</h1>";
+
+    <?php if(isset($user)) {
+        if($user!=null) {
+            echo '<div class="profil"> <h1>Profil de '.$user."</h1>";
             $res = mysqli_query($conn,"SELECT * FROM notes WHERE personne = '$user'");
             echo "<p>Notes :</p>";
             while ($row = mysqli_fetch_array($res)) {
@@ -23,11 +19,12 @@
               echo $contenu['0']." : ".$row['2']."  "."<input type=\"image\" src=\"woofwoof.png\" width=\"32\" height=\"27\"alt=\"Submit\">"."<input type=\"hidden\" name=\"supprimer2\" value=\"$idnote\">";
               echo "</form>";
             }
-          } else {
-            echo "vous n'êtes pas connecté";
           }
+        } else {
+          echo "<p>Vous n'êtes pas connecté</p>";
+        }
+        echo "</div>"
     ?>
-    <br>
-    <a href="accueil.php">Retournez à l'accueil</a>
+    
   </body>
 </html>

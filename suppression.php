@@ -47,4 +47,5 @@
     $req = mysqli_query($conn, "DELETE FROM notes WHERE personne = '$userasuppr'");
     $req2 = mysqli_query($conn, "DELETE FROM utilisateur WHERE nom = '$userasuppr'");
   }
+  header("Location: profil.php");
 ?>

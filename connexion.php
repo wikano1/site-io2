@@ -1,4 +1,22 @@
-<?php
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title></title>
+  </head>
+  <body>
+    <br><br>
+  <div class="profil"> <!--  -->
+    <h3>Connectez-vous ci dessous</h3>
+    <form action="connexion.php" method="POST">
+    <p>Votre nom : <input type="text" name="nom"></p>
+    <p>Votre mdp : <input type="text" name="mdp"></p>
+    <p><input type="submit" value="OK"></p>
+    <p>retournez à l'accueil<a href="index.php"> ici</a></p>
+    
+    <?php
  include_once("connexionmysql.php");
  $conn=connexion();
  session_start();
@@ -17,7 +35,7 @@
      if (mysqli_num_rows($res)==1) {
        $row = mysqli_fetch_array($res);
        $_SESSION['nom'] = $a;
-       header('Location: accueil.php');
+       header('Location: index.php');
        exit();
       } else {
          echo "Mauvais mail ou mot de passe !";
@@ -27,18 +45,22 @@
    }
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>connectez-vous ci dessous</h1>
-    <form action="connexion.php" method="POST">
-    <p>Votre nom : <input type="text" name="nom"></p>
-    <p>Votre mdp : <input type="text" name="mdp"></p>
-    <p><input type="submit" value="OK"></p>
-    <p>retournez à l'accueil<a href="accueil.php"> ici</a></p>
   </body>
+  <footer>
+  <div class ="colonnes">
+    <div class="colonne"> 
+      <p>a propos</p>
+    </div>
+    <div class="colonne"> 
+      <p>nos reseaux sociaux</p>
+    </div>
+    <div class="colonne">
+      <p>aide</p>
+     </div>
+    <div class="colonne"> 
+      <p>conditions d'utilistations</p>
+    </div>
+  </div>
+</footer>
+</div>
 </html>

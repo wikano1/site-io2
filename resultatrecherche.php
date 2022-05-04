@@ -1,6 +1,6 @@
 <?php
-  echo "<h1>Resultat de la recherche</h1>";
-  include_once("connexionmysql.php");
+  include("index.php");
+  echo '<div class="moteur"> <h1>Resultat de la recherche :</h1>';
   $conn=connexion();
   $recherche = htmlspecialchars($_GET['recherche']);
   $opérande = $_GET['opérande'];
@@ -27,4 +27,5 @@
     $resultat= $lien.">".$row['1']."</a><br>";
     echo $resultat;
   }
+  echo "</div>"
 ?>
