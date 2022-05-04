@@ -55,7 +55,7 @@
       </div>
     </nav> <!-- fin de la barre de navigation -->
 
-          <br><br>
+          
         
         <?php
 		    //vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
@@ -69,7 +69,7 @@
 		    <?php } 
         ?>
         
-  
+   <br><br>
 
 <footer> <!-- le footer en bas de page -->
   <div class ="colonnes">
