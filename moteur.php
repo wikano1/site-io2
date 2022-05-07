@@ -22,7 +22,8 @@
   </head>
   <body>
     <p><img src="test/<?php echo $contenu ?>.png" height="256"></p>
-    <p><div class="moteur"> Note :
+    <p><div class="moteur"> Nom : <?php echo $row['1']; ?> </p>
+    <p> Note :
       <?php
         if ($row['2']!=0) {
           echo $row['2'];
@@ -96,7 +97,7 @@
         }
       }
     ?>
-    <p>Retournez à l'accueil <a href="index.php">ici</a></p>
+    <p>Retournez à l'accueil <a href="accueil.php?page=1">ici</a></p>
     </div>
   </body>
   <br><br><br><br><br><br>

@@ -14,7 +14,7 @@
     <p>Votre nom <a>* </a> : <input type="text" name="nom"></p>
     <p>Votre mdp <a>* </a> : <input type="text" name="mdp"></p>
     <p><input type="submit" value="inscription"></p>
-    <p>retournez à l'accueil<a href="index.php"> ici</a></p>
+    <p>retournez à l'accueil<a href="accueil.php?page=1"> ici</a></p>
 
 
     <?php
@@ -26,7 +26,7 @@ if(isset($_POST['nom'])) {
   if ($aaa=='' || $bbb =='') {
     echo 'mot de passe ou nom vide veuillez recommencer </div>';
   }
-  elseif (strpos($aaa,' ')!=null || strpos($bbb,' ')!=null) {
+  elseif (strpos($aaa,' ')!=null || strpos($bbb,' ')!=null || strpos($aaa,' ')==0 || strpos($bbb,' ')==0) {
     echo 'Espaces présents dans le nom ou le mot de passe veuillez recommencer</div>';
   } else {
 

@@ -14,7 +14,7 @@
     <p>Votre nom : <input type="text" name="nom"></p>
     <p>Votre mdp : <input type="text" name="mdp"></p>
     <p><input type="submit" value="OK"></p>
-    <p>retournez à l'accueil<a href="index.php"> ici</a></p>
+    <p>retournez à l'accueil<a href="accueil.php?page=1"> ici</a></p>
     
     <?php
  include_once("connexionmysql.php");
@@ -35,7 +35,7 @@
      if (mysqli_num_rows($res)==1) {
        $row = mysqli_fetch_array($res);
        $_SESSION['nom'] = $a;
-       header('Location: index.php');
+       header('Location: accueil.php?page=1.php');
        exit();
       } else {
          echo "Mauvais mail ou mot de passe !";

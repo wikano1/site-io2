@@ -73,7 +73,7 @@
       <title></title>
     </head>
     <body>
-      <p>Retournez à l'accueil <a href="index.php">ici</a></p>
+      <p>Retournez à l'accueil <a href="accueil.php?page=1">ici</a></p>
 </div>
       <br><br><br><br><br><br>
     </body>

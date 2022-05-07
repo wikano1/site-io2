@@ -10,13 +10,13 @@
 <head>
   <meta charset="utf-8">
   <title>accueil</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="style2.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <nav> <!-- barre de navigation-->
       <div class="onglets">
-        <a href="index.php">Accueil</a>
+        <a href="accueil.php?page=1">Accueil</a>
         <a>
         <form action="resultatrecherche.php" method="get">
     	  <input type="search" name="recherche">
@@ -69,7 +69,7 @@
 		    <?php } 
         ?>
         
-   <br><br>
+  <br><br>
 
 <footer> <!-- le footer en bas de page -->
   <div class ="colonnes">
