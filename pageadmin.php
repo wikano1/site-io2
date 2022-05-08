@@ -64,11 +64,8 @@
         $id = $row['0'];
         $req = mysqli_query($conn, "SELECT nom FROM contenu WHERE id = '$id'");
         $contenu = mysqli_fetch_array($req);
-        $nomuser = $row['1'];
-        $avis = $row['3'];
-        $note = $row['2'];
     ?>
-        <p>Utilisateur: <?php echo $row['1'];?>, <?php echo $contenu['0']; ?>, avis: « <?php echo $row['0']; ?> », note : <?php echo $row['2']; ?></p>
+        <p>Utilisateur: <?php echo $row['1'];?>, <?php echo $contenu['0']; ?>, avis: « <?php echo $row['3']; ?> », note : <?php echo $row['2']; ?></p>
     <?php
       }
     ?>
