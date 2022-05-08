@@ -29,7 +29,7 @@
         <input type="hidden" name="idnote" value="$idnote">
         <p>
           Utilisateur: <?php echo $row['1']; ?>, <?php echo $contenu['0']; ?> : <?php echo $row['2']; ?>
-          <input type="image" src="woofwoof.png" width="32" height="27"alt="Submit">
+          <input type="image" src="croix.png" width="32" height="27"alt="Submit">
         </p>
         <input type="hidden" name="supprimer" value="$utilisateur">
       </form>
@@ -49,7 +49,7 @@
             <input type="hidden" name="bool" value="1">
             <p>
               Utilisateur: <?php echo $nomuser; ?>
-              <input type="image" src="woofwoof.png" width="32" height="27"alt="Submit">
+              <input type="image" src="croix.png" width="32" height="27"alt="Submit">
             </p>
             <input type="hidden" name="multisuppr" value="<?php echo $nomuser; ?>">
           </form>
