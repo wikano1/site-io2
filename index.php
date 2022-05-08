@@ -2,6 +2,14 @@
 	include("connexionmysql.php");
 	$conn = connexion();
 	session_start();
+
+	//vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
+	if (isset(_SESSION['nom'])) {
+		$user = $_SESSION['nom'];
+		$verif = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
+		$verif = mysqli_fetch_array($verif);
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +47,7 @@
       </div>
       <div class="buttons">
         <?php
-	    	//vérification de si l'utilisateur est un connecté ou non -> oui=deconnexion.php, non=connexion.php
+	    	//vérification de si l'utilisateur est connecté ou non -> oui=deconnexion.php, non=connexion.php
 		    if (isset($_SESSION['nom'])) {
 				$_SESSION['val']=1;
 		    ?>
@@ -49,45 +57,38 @@
         <button class="login"><a href="connexion.php">connectez-vous</a></button>
 		    <?php } ?>
 		    <button class="login"><a href="inscription1.php">inscrivez-vous</a></button>
-        
+
 		    <button class="login"><a href="profil.php">consultez votre profil ici</a></button>
         </form>
       </div>
     </nav> <!-- fin de la barre de navigation -->
 
-          
-        
+          <br><br>
+
         <?php
-		    //vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
-		    if (isset($_SESSION['nom'])) {
-			    $user = $_SESSION['nom'];
-			    $a = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
-			    $a = mysqli_fetch_array($a);
-	      }
-        if (isset($a['0'])) { ?>
+        if (isset($verif['0'])) { ?>
 		      <p>vous etes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
-		    <?php } 
+		    <?php }
         ?>
-        
-  <br><br>
+
+
 
 <footer> <!-- le footer en bas de page -->
   <div class ="colonnes">
-    <div class="colonne"> 
+    <div class="colonne">
       <p>a propos</p>
     </div>
-    <div class="colonne"> 
+    <div class="colonne">
       <p>nos reseaux sociaux</p>
     </div>
     <div class="colonne">
       <p>aide</p>
      </div>
-    <div class="colonne"> 
+    <div class="colonne">
       <p>conditions d'utilistations</p>
     </div>
   </div>
-</footer> <!-- fin du footer -->
-
+</footer>
 
 </body>
 </html>
