@@ -20,7 +20,7 @@
     <form action="suppression.php" method="post">
       <p>
         <?php echo $contenu['0']; ?> : <?php echo $row['2']; ?>
-        <input type="image" src="woofwoof.png" width="32" height="27"alt="Submit">
+        <input type="image" src="croix.png" width="32" height="27"alt="Submit">
       </p>
       <input type="hidden" name="supprimer2" value=<?php echo $idnote; ?>>
     </form>
