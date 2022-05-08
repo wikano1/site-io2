@@ -1,7 +1,5 @@
 <?php
   include("index.php");
-  include("connexionmysql.php");
-  $conn=connexion();
 ?>
 <div class="moteur">
   <h1>Resultat de la recherche :</h1>
