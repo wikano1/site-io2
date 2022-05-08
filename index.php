@@ -4,7 +4,7 @@
 	session_start();
 
 	//vérification de si l'utilisateur est un administrateur ou non -> oui=<p>, non=/
-	if (isset(_SESSION['nom'])) {
+	if (isset($_SESSION['nom'])) {
 		$user = $_SESSION['nom'];
 		$verif = mysqli_query($conn, "SELECT personne FROM administrateur WHERE personne='$user'");
 		$verif = mysqli_fetch_array($verif);
