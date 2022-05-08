@@ -67,7 +67,7 @@
 
         <?php
         if (isset($verif['0'])) { ?>
-		      <p>vous etes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
+		      <p>vous êtes administrateur, cliquez <a href="pageadmin.php">ici</a> pour accéder à l'espace administrateur</p>
 		    <?php }
         ?>
 
