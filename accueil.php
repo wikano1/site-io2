@@ -34,7 +34,6 @@
 
   <!-- partie html -->
 <div class="pages">
-  <p>
     <?php
       if ($_GET['page']!=1) {
     ?>
@@ -55,7 +54,6 @@
         }
       }
     ?>
-  </p>
 </div>
 <br>
 <?php
