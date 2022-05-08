@@ -1,5 +1,6 @@
 <?php
   include("index.php");
+  session_start();
 
   $contenu = parse_url("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", PHP_URL_QUERY);
 

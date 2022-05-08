@@ -1,8 +1,10 @@
 <?php
+  //Connexion à la base de données
   session_start();
   include_once("connexionmysql.php");
   $conn = connexion();
   $user = $_SESSION['nom'];
+  // Vérification de si l'utilisateur est admin ou non sinon renvoie sur erreur.html
 
   $a = mysqli_query($conn, "SELECT * FROM administrateur WHERE personne='$user'");
   $e = mysqli_fetch_array($a);
@@ -17,6 +19,8 @@
     <h2>Notes :</h2>
 
       <?php
+      //affiche les notes et permet de les supprimer en cliquant sur l'image
+
         while ($row = mysqli_fetch_array($res)) {
           $idnote = $row['0'];
           $utilisateur = $row['1'];
@@ -26,12 +30,12 @@
 
       <form action="suppression.php" method="post">
         <input type="hidden" name="bool" value="1">
-        <input type="hidden" name="idnote" value="$idnote">
+        <input type="hidden" name="idnote" value="<?php echo $idnote;  ?>">
         <p>
           Utilisateur: <?php echo $row['1']; ?>, <?php echo $contenu['0']; ?> : <?php echo $row['2']; ?>
           <input type="image" src="croix.png" width="32" height="27"alt="Submit">
         </p>
-        <input type="hidden" name="supprimer" value="$utilisateur">
+        <input type="hidden" name="supprimer" value="<?php echo $utilisateur; ?>">
       </form>
     <?php
       }
@@ -45,6 +49,8 @@
         $res=mysqli_num_rows($req);
         if($res==0) {
     ?>
+          <!--       //formulaire permettant de supprimer les notes : affiche Utilisateur: $nom, $nomdumoteur : $note
+-->
           <form action="suppression.php" method="post">
             <input type="hidden" name="bool" value="1">
             <p>

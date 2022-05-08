@@ -10,14 +10,14 @@
     $lien = htmlspecialchars($_POST['lien']);
     $desc = htmlspecialchars($_POST['desc']);
 
-
+    //problème de guillemets
     $desc = str_replace("'", "\'", $desc);
 
-
+    //vérifie que le moteur n'existe pas déjà
     $verif = mysqli_query($conn, "SELECT * FROM contenu WHERE nom='$nom' OR lien='$lien'");
     $row_cnt = mysqli_num_rows($verif);
 
-
+    //ajoute le moteur
     if ($row_cnt==0) {
       $req= mysqli_query($conn, "INSERT INTO contenu(nom, note, lien, totalnotes, description) VALUES ('$nom','0','$lien','0','$desc')") or die(mysqli_error($conn));
 

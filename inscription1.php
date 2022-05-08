@@ -25,56 +25,58 @@
       if(isset($_POST['nom']) && isset($_POST['mdp'])) {
         $aaa = htmlspecialchars($_POST['nom']);
         $bbb = htmlspecialchars($_POST['mdp']);
+
+    if(isset($aaa) && isset($bbb)) {
+      if ($aaa=='' || $bbb =='') {
+      echo 'mot de passe ou nom vide veuillez recommencer </div>';
       }
 
-      if(isset($aaa) && isset($bbb)) {
-        if ($aaa=='' || $bbb =='') {
-        echo 'mot de passe ou nom vide veuillez recommencer </div>';
-        }
 
-        elseif (strlen($aaa)>16 || strlen($bbb)>16) {
-          echo "nom ou mdp supérieur à 16 caractères </div>";
-        }
+      elseif (strlen($aaa)>16 || strlen($bbb)>16) {
+        echo "nom ou mdp supérieur à 16 caractères </div>";
+      }
 
-        else {
-          for ($i = 0; $i<strlen($aaa); $i++) {
-            if ($aaa[$i]==' ') {
-              $bool = true;
-            }
-          }
-          for ($i = 0; $i<strlen($bbb); $i++) {
-            if ($bbb[$i]==' ') {
-              $bool = true;
-            }
+      else {
+        for ($i = 0; $i<strlen($aaa); $i++) {
+          if ($aaa[$i]==' ') {
+            $bool = true;
           }
         }
-    
-        if ($bool==true) {
-          echo 'Espaces présents dans le nom ou le mot de passe veuillez recommencer</div>';
-        }
-
-        else {
-
-        $mdpsec= sha1($_POST['mdp']);
-
-        $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$aaa'");
-        $row = mysqli_fetch_array($res);
-
-        if (mysqli_num_rows($res)==1) {
-          echo "Nom d'utilisateur déjà existant, veuillez en choisir un autre";
-        }
-
-        else {
-          $instruction = "INSERT INTO utilisateur(nom, motdepasse) VALUES ('$aaa', '$mdpsec')";
-        }
-
-        if(isset($instruction)) {
-          if (mysqli_query($conn,$instruction)) {
-            echo "Compte crée</div>";
+        for ($i = 0; $i<strlen($bbb); $i++) {
+          if ($bbb[$i]==' ') {
+            $bool = true;
           }
+        }
+      }
+
+      if ($bool==true) {
+      echo 'Espaces présents dans le nom ou le mot de passe veuillez recommencer</div>';
+      }
+
+      else {
+
+      $mdpsec= sha1($_POST['mdp']);
+
+      $res = mysqli_query($conn,"SELECT * FROM utilisateur WHERE nom = '$aaa'");
+      $row = mysqli_fetch_array($res);
+
+      }
+
+      if (mysqli_num_rows($res)==1) {
+        echo "Nom d'utilisateur déjà existant, veuillez en choisir un autre";
+      }
+
+      else {
+        $instruction = "INSERT INTO utilisateur(nom, motdepasse) VALUES ('$aaa', '$mdpsec')";
+      }
+
+      if(isset($instruction)) {
+        if (mysqli_query($conn,$instruction)) {
+          echo "Compte crée</div>";
         }
       }
     }
+  }
     ?>
 
   </body>

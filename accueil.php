@@ -1,8 +1,9 @@
 <?php
   //import de l'index
   include("index.php");
+  session_start();
 
-  //
+  //calcule le nombre maximal de pages
   $nbMoteursReq = mysqli_query($conn, "SELECT nom FROM contenu");
   $nbMoteurs = mysqli_num_rows($nbMoteursReq);
   if ($nbMoteurs%4!=0) {
@@ -12,7 +13,7 @@
   }
 
 
-
+  //calcule le nombre de moteurs à afficher dans la page courante
   $pageId=($_GET['page']-1)*4+1;
   $nbMoteursID = mysqli_query($conn, "SELECT nom FROM contenu");
   $nbMoteursId = mysqli_num_rows($nbMoteursID);
@@ -23,8 +24,7 @@
     $nbMoteursId = 4;
   }
 
-
-
+  //récupère les moteurs à afficher
   $toutMoteursReq = mysqli_query($conn,"SELECT * FROM contenu WHERE id>=$pageId");
   $moteursReq = mysqli_query($conn, "SELECT nom FROM contenu WHERE id>=$pageId");
 
